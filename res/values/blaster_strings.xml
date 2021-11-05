@@ -34,6 +34,8 @@
     <string name="lockscreen_title">Lockscreen</string>
     <string name="notifications_title">Notifications</string>
     <string name="miscellaneous_title">Miscellaneous</string>
+    <string name="themes_title">Themes</string>
+    <string name="themes_summary">Personalize your device appearance</string>
 
     <!-- Status bar clock and date options -->
     <string name="status_bar_clock_title">Clock settings</string>

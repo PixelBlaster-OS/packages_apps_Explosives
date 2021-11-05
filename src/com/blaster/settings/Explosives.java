@@ -46,7 +46,7 @@ import com.android.internal.logging.nano.MetricsProto;
 import com.blaster.settings.Statusbar;
 import com.blaster.settings.QuickSettings;
 import com.blaster.settings.Lockscreen;
-import com.blaster.settings.Notifications;
+import com.blaster.settings.Themes;
 import com.blaster.settings.Miscellaneous;
 
 
@@ -79,8 +79,8 @@ public class Explosives extends SettingsPreferenceFragment {
                  switchFrag(new QuickSettings());}
                 else if (item.getItemId() == R.id.lockscreen_view) {
                  switchFrag(new Lockscreen());}
-                else if (item.getItemId() == R.id.notifications_view) {
-                 switchFrag(new Notifications());}
+                else if (item.getItemId() == R.id.themes_view) {
+                 switchFrag(new Themes());}
                 else if (item.getItemId() == R.id.miscellaneous_view) {
                  switchFrag(new Miscellaneous());}
             return true;
@@ -88,8 +88,8 @@ public class Explosives extends SettingsPreferenceFragment {
     });
         
 
-        bottomNavigation.setSelectedItemId(R.id.status_bar_view);
-        switchFrag(new Statusbar());
+        bottomNavigation.setSelectedItemId(R.id.themes_view);
+        switchFrag(new Themes());
         bottomNavigation.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
         return view;
     }

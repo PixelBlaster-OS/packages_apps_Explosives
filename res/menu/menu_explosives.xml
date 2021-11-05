@@ -14,6 +14,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+            android:id="@+id/themes_view"
+            android:icon="@drawable/ic_settings_themes"
+            android:title="@string/themes_title" />    
+    
+    <item
             android:id="@+id/status_bar_view"
             android:icon="@drawable/ic_settings_statusbar"
             android:title="@string/statusbar_title" />
@@ -27,11 +32,6 @@
             android:id="@+id/lockscreen_view"
             android:icon="@drawable/ic_settings_lockscreen"
             android:title="@string/lockscreen_title" />
-
-    <item
-            android:id="@+id/notifications_view"
-            android:icon="@drawable/ic_settings_notifications"
-            android:title="@string/notifications_title" />
 
     <item
             android:id="@+id/miscellaneous_view"

@@ -14,10 +14,5 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
-    android:title="@string/quicksettings_title" >
-
-     <Preference
-        android:key="notifications_preference"
-        android:fragment="com.blaster.settings.fragments.Notifications"
-        android:title="@string/notifications_title" />   
+    android:title="@string/themes_title" >
 </PreferenceScreen>

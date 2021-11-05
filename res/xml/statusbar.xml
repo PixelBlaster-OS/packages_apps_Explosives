@@ -19,4 +19,9 @@
         android:key="status_bar_clock"
         android:fragment="com.blaster.settings.fragments.ClockDateSettings"
         android:title="@string/status_bar_clock_title" />
+
+        <Preference
+        android:key="battery_bar_category"
+        android:fragment="com.blaster.settings.fragments.StatusbarBatterySettings"
+        android:title="@string/battery_settings_title" />
 </PreferenceScreen>

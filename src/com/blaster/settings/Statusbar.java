@@ -45,9 +45,10 @@ import java.util.List;
 public class Statusbar extends SettingsPreferenceFragment {
 
     @Override
-    public void onCreate(Bundle icicle) {
-        super.onCreate(icicle);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.statusbar);
+        setRetainInstance(true);
         PreferenceScreen prefSet = getPreferenceScreen();
 
     }

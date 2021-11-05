@@ -16,9 +16,22 @@
 package com.blaster.settings;
 
 import android.content.Context;
+import androidx.core.content.ContextCompat;
 import android.os.Bundle;
 import android.provider.SearchIndexableResource;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceScreen;
@@ -30,6 +43,16 @@ import com.android.settingslib.search.SearchIndexable;
 
 import com.android.internal.logging.nano.MetricsProto;
 
+import com.blaster.settings.Statusbar;
+import com.blaster.settings.QuickSettings;
+import com.blaster.settings.Lockscreen;
+import com.blaster.settings.Notifications;
+import com.blaster.settings.Miscellaneous;
+
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomnavigation.LabelVisibilityMode;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -38,9 +61,53 @@ import java.util.List;
 public class Explosives extends SettingsPreferenceFragment { 
 
     @Override
-    public void onCreate(Bundle icicle) {
-        super.onCreate(icicle);
-        addPreferencesFromResource(R.xml.blaster_settings);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        
+        View view = inflater.inflate(R.layout.layout_explosives, container, false);
+
+        final BottomNavigationView bottomNavigation = (BottomNavigationView) view.findViewById(R.id.bottom_navigation);
+
+    bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+    @Override
+	  public boolean onNavigationItemSelected(MenuItem item) {
+
+             if (item.getItemId() == bottomNavigation.getSelectedItemId()) {
+               return false;
+             } else if (item.getItemId() == R.id.status_bar_view) {
+                 switchFrag(new Statusbar());}
+                else if (item.getItemId() == R.id.quick_settings_view) {
+                 switchFrag(new QuickSettings());}
+                else if (item.getItemId() == R.id.lockscreen_view) {
+                 switchFrag(new Lockscreen());}
+                else if (item.getItemId() == R.id.notifications_view) {
+                 switchFrag(new Notifications());}
+                else if (item.getItemId() == R.id.miscellaneous_view) {
+                 switchFrag(new Miscellaneous());}
+            return true;
+            }
+    });
+        
+
+        bottomNavigation.setSelectedItemId(R.id.status_bar_view);
+        switchFrag(new Statusbar());
+        bottomNavigation.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
+        return view;
+    }
+
+    private void switchFrag(Fragment fragment) {
+        getFragmentManager().beginTransaction().replace(R.id.fragment_frame, fragment).commit();
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+        getActivity().setTitle(R.string.blaster_settings_title);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
     }
 
     @Override
@@ -54,7 +121,6 @@ public class Explosives extends SettingsPreferenceFragment {
                 public List<SearchIndexableResource> getXmlResourcesToIndex(
                         Context context, boolean enabled) {
                     final SearchIndexableResource sir = new SearchIndexableResource(context);
-                    sir.xmlResId = R.xml.blaster_settings;
                     return Arrays.asList(sir);
                 }
 

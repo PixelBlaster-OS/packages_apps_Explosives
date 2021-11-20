@@ -18,7 +18,9 @@ package com.blaster.settings;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.hardware.fingerprint.FingerprintManager;
 import android.os.Bundle;
 import android.os.UserHandle;
 import android.provider.Settings;
@@ -43,7 +45,15 @@ import java.util.Arrays;
 import java.util.List;
 
 @SearchIndexable
-public class Lockscreen extends SettingsPreferenceFragment {
+public class Lockscreen extends SettingsPreferenceFragment implements
+        Preference.OnPreferenceChangeListener {
+
+    private static final String FINGERPRINT_SUCCESS_VIB = "fingerprint_success_vib";
+    private static final String FINGERPRINT_ERROR_VIB = "fingerprint_error_vib";
+
+    private FingerprintManager mFingerprintManager;
+    private SwitchPreference mFingerprintSuccessVib;
+    private SwitchPreference mFingerprintErrorVib;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -52,6 +62,45 @@ public class Lockscreen extends SettingsPreferenceFragment {
         PreferenceScreen prefSet = getPreferenceScreen();
         final Resources res = getResources();
         final PreferenceScreen prefScreen = getPreferenceScreen();
+        final ContentResolver resolver = getActivity().getContentResolver();
+        final PackageManager mPm = getActivity().getPackageManager();
+
+        mFingerprintManager = (FingerprintManager) getActivity().getSystemService(Context.FINGERPRINT_SERVICE);
+        mFingerprintSuccessVib = findPreference(FINGERPRINT_SUCCESS_VIB);
+        mFingerprintErrorVib = findPreference(FINGERPRINT_ERROR_VIB);
+        if (mPm.hasSystemFeature(PackageManager.FEATURE_FINGERPRINT) &&
+                 mFingerprintManager != null) {
+            if (!mFingerprintManager.isHardwareDetected()){
+                prefSet.removePreference(mFingerprintSuccessVib);
+                prefSet.removePreference(mFingerprintErrorVib);
+            } else {
+                mFingerprintSuccessVib.setChecked((Settings.System.getInt(getContentResolver(),
+                        Settings.System.FP_SUCCESS_VIBRATE, 1) == 1));
+                mFingerprintSuccessVib.setOnPreferenceChangeListener(this);
+                mFingerprintErrorVib.setChecked((Settings.System.getInt(getContentResolver(),
+                        Settings.System.FP_ERROR_VIBRATE, 1) == 1));
+                mFingerprintErrorVib.setOnPreferenceChangeListener(this);
+            }
+        } else {
+            prefSet.removePreference(mFingerprintSuccessVib);
+            prefSet.removePreference(mFingerprintErrorVib);
+        }        
+    }
+
+    public boolean onPreferenceChange(Preference preference, Object objValue) {
+        ContentResolver resolver = getActivity().getContentResolver();
+        if (preference == mFingerprintSuccessVib) {
+            boolean value = (Boolean) objValue;
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.FP_SUCCESS_VIBRATE, value ? 1 : 0);
+            return true;
+        } else if (preference == mFingerprintErrorVib) {
+            boolean value = (Boolean) objValue;
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.FP_ERROR_VIBRATE, value ? 1 : 0);
+            return true;
+        }
+        return false;
     }
 
     @Override

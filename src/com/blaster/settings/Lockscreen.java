@@ -48,10 +48,12 @@ import java.util.List;
 public class Lockscreen extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
+    private static final String FINGERPRINT_START_VIB = "fingerprint_start_vib";
     private static final String FINGERPRINT_SUCCESS_VIB = "fingerprint_success_vib";
     private static final String FINGERPRINT_ERROR_VIB = "fingerprint_error_vib";
 
     private FingerprintManager mFingerprintManager;
+    private SwitchPreference mFingerprintStartVib;
     private SwitchPreference mFingerprintSuccessVib;
     private SwitchPreference mFingerprintErrorVib;
 
@@ -66,14 +68,19 @@ public class Lockscreen extends SettingsPreferenceFragment implements
         final PackageManager mPm = getActivity().getPackageManager();
 
         mFingerprintManager = (FingerprintManager) getActivity().getSystemService(Context.FINGERPRINT_SERVICE);
+        mFingerprintStartVib = findPreference(FINGERPRINT_START_VIB);
         mFingerprintSuccessVib = findPreference(FINGERPRINT_SUCCESS_VIB);
         mFingerprintErrorVib = findPreference(FINGERPRINT_ERROR_VIB);
         if (mPm.hasSystemFeature(PackageManager.FEATURE_FINGERPRINT) &&
                  mFingerprintManager != null) {
             if (!mFingerprintManager.isHardwareDetected()){
+                prefSet.removePreference(mFingerprintStartVib);
                 prefSet.removePreference(mFingerprintSuccessVib);
                 prefSet.removePreference(mFingerprintErrorVib);
             } else {
+                mFingerprintStartVib.setChecked((Settings.System.getInt(getContentResolver(),
+                        Settings.System.FP_START_VIBRATE, 1) == 1));
+                mFingerprintStartVib.setOnPreferenceChangeListener(this);
                 mFingerprintSuccessVib.setChecked((Settings.System.getInt(getContentResolver(),
                         Settings.System.FP_SUCCESS_VIBRATE, 1) == 1));
                 mFingerprintSuccessVib.setOnPreferenceChangeListener(this);
@@ -82,6 +89,7 @@ public class Lockscreen extends SettingsPreferenceFragment implements
                 mFingerprintErrorVib.setOnPreferenceChangeListener(this);
             }
         } else {
+            prefSet.removePreference(mFingerprintStartVib);
             prefSet.removePreference(mFingerprintSuccessVib);
             prefSet.removePreference(mFingerprintErrorVib);
         }        
@@ -89,7 +97,12 @@ public class Lockscreen extends SettingsPreferenceFragment implements
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         ContentResolver resolver = getActivity().getContentResolver();
-        if (preference == mFingerprintSuccessVib) {
+        if (preference == mFingerprintStartVib) {
+            boolean value = (Boolean) objValue;
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.FP_START_VIBRATE, value ? 1 : 0);
+            return true;
+        } else if (preference == mFingerprintSuccessVib) {
             boolean value = (Boolean) objValue;
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.FP_SUCCESS_VIBRATE, value ? 1 : 0);

@@ -24,7 +24,7 @@
             android:id="@+id/statusbar"
             android:title="@string/statusbar_title"
             android:fragment="com.blaster.settings.Statusbar"
-            android:layout="@layout/preference_explosives_statusbar"
+            android:icon="@drawable/ic_settings_statusbar"
             />
 
         <!-- Quick Settings -->
@@ -32,7 +32,7 @@
             android:id="@+id/quick_settings"
             android:title="@string/quicksettings_title"
             android:fragment="com.blaster.settings.QuickSettings"
-            android:layout="@layout/preference_explosives_quicksettings"
+            android:icon="@drawable/ic_settings_quicksettings"
             />
 
         <!-- Buttons -->
@@ -40,7 +40,7 @@
             android:key="button_settings"
             android:title="@string/button_settings_title"
             android:fragment="com.blaster.settings.ButtonSettings"
-	    android:layout="@layout/preference_explosives_buttons"
+            android:icon="@drawable/ic_settings_buttons"
 	    />
 
         <!-- Notifications -->
@@ -48,7 +48,7 @@
             android:key="notifications_settings"
             android:title="@string/notifications_title"
             android:fragment="com.blaster.settings.Notifications"
-	    android:layout="@layout/preference_explosives_notifications"
+            android:icon="@drawable/ic_settings_notifications"
 	    />
 
         <!-- Lockscreen -->
@@ -56,7 +56,7 @@
             android:key="lockscreen_settings"
             android:title="@string/lockscreen_title"
             android:fragment="com.blaster.settings.Lockscreen"
-	    android:layout="@layout/preference_explosives_lockscreen"
+            android:icon="@drawable/ic_settings_lockscreen"
 	    />
 
         <!-- Miscellaneous -->
@@ -64,7 +64,7 @@
             android:key="miscellaneous_settings"
             android:title="@string/miscellaneous_title"
             android:fragment="com.blaster.settings.Miscellaneous"
-	    android:layout="@layout/preference_explosives_miscellaneous"
+            android:icon="@drawable/ic_settings_miscellaneous"
 	    />
 
 </PreferenceScreen>

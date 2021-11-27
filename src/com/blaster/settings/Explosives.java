@@ -41,6 +41,22 @@ public class Explosives extends SettingsPreferenceFragment {
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         addPreferencesFromResource(R.xml.blaster_settings);
+        final PreferenceScreen mPreferenceScreen = getPreferenceScreen();
+        if (mPreferenceScreen == null) {
+                    return;
+                }
+        final int num = mPreferenceScreen.getPreferenceCount();
+
+
+        for (int i = 0; i < num; i++) {
+                final Preference preference = mPreferenceScreen.getPreference(i);
+                if (preference == null) {
+                    break;
+                }
+
+                preference.setLayoutResource(R.layout.preference_explosives_card);
+
+            }
     }
 
     @Override

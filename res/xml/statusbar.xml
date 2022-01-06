@@ -24,4 +24,9 @@
         android:key="battery_bar_category"
         android:fragment="com.blaster.settings.fragments.StatusbarBatterySettings"
         android:title="@string/battery_settings_title" />
+
+        <Preference
+        android:key="traffic"
+        android:fragment="com.blaster.settings.fragments.Traffic"
+        android:title="@string/traffic_title" />        
 </PreferenceScreen>

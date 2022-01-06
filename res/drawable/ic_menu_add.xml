@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     Copyright (C) 2021 PixelBlaster-OS
+     Copyright (C) 2017-2019 crDroid Android Project
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
      You may obtain a copy of the License at
@@ -11,15 +11,14 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<PreferenceScreen
+<vector
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
-    android:title="@string/notifications_title" >
-
-     <Preference
-        android:key="heads_up_notifications"
-        android:summary="@string/heads_up_notifications_summary"
-        android:title="@string/heads_up_notifications"
-        android:fragment="com.blaster.settings.fragments.HeadsUpSettings"/>
-
-</PreferenceScreen>
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24.0"
+    android:viewportHeight="24.0"
+    android:tint="?android:attr/colorControlNormal">
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>
+</vector>

@@ -40,7 +40,7 @@
         settings:min="0"
         settings:units="" />
 
-    <SwitchPreference
+    <com.blaster.support.preference.SystemSettingSwitchPreference
             android:key="network_traffic_arrow"
             android:title="@string/network_traffic_arrow"
             android:summary="@string/network_traffic_arrow_summary"

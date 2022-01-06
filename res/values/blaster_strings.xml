@@ -36,6 +36,7 @@
     <string name="notifications_title">Notifications</string>
     <string name="miscellaneous_title">Miscellaneous</string>
     <string name="themes_title">Themes</string>
+    <string name="monet_title">Monet</string>
 
     <!-- Status bar clock and date options -->
     <string name="status_bar_clock_title">Clock settings</string>

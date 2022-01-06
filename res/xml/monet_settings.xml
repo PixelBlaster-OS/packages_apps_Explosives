@@ -14,7 +14,7 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
-    android:title="@string/themes_title" >
+    android:title="@string/monet_title" >
 
     <com.blaster.support.preference.SecureSettingSwitchPreference
         android:key="monet_engine_custom_color"

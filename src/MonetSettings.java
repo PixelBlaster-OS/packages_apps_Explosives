@@ -46,7 +46,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @SearchIndexable
-public class Themes extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
+public class MonetSettings extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
 private String MONET_ENGINE_COLOR_OVERRIDE = "monet_engine_color_override";
 private ColorPickerPreference mMonetColor;
@@ -54,7 +54,7 @@ private ColorPickerPreference mMonetColor;
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        addPreferencesFromResource(R.xml.themes);
+        addPreferencesFromResource(R.xml.monet_settings);
         PreferenceScreen prefSet = getPreferenceScreen();
         final ContentResolver resolver = getActivity().getContentResolver();
 
@@ -93,7 +93,7 @@ private ColorPickerPreference mMonetColor;
                 public List<SearchIndexableResource> getXmlResourcesToIndex(
                         Context context, boolean enabled) {
                     final SearchIndexableResource sir = new SearchIndexableResource(context);
-                    sir.xmlResId = R.xml.themes;
+                    sir.xmlResId = R.xml.monet_settings;
                     return Arrays.asList(sir);
                 }
 

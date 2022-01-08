@@ -29,4 +29,10 @@
         android:key="traffic"
         android:fragment="com.blaster.settings.fragments.Traffic"
         android:title="@string/traffic_title" />        
+
+     <com.blaster.support.preference.SystemSettingSwitchPreference
+        android:key="double_tap_sleep_gesture"
+        android:title="@string/double_tap_to_sleep_title"
+        android:summary="@string/double_tap_to_sleep_summary"
+        android:defaultValue="true" />
 </PreferenceScreen>

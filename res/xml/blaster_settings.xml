@@ -36,20 +36,20 @@
             />
 
         <!-- Quick Settings -->
-        <Preference
+<!--        <Preference
             android:id="@+id/quick_settings"
             android:title="@string/quicksettings_title"
             android:fragment="com.blaster.settings.QuickSettings"
             android:icon="@drawable/ic_settings_quicksettings"
-            />
+            /> -->
 
         <!-- Buttons -->
-        <Preference
+<!--        <Preference
             android:key="button_settings"
             android:title="@string/button_settings_title"
             android:fragment="com.blaster.settings.ButtonSettings"
             android:icon="@drawable/ic_settings_buttons"
-	    />
+	    /> -->
 
         <!-- Notifications -->
         <Preference
@@ -67,12 +67,12 @@
             android:icon="@drawable/ic_settings_lockscreen"
 	    />
 
-        <!-- Miscellaneous -->
+        <!-- Miscellaneous 
         <Preference
             android:key="miscellaneous_settings"
             android:title="@string/miscellaneous_title"
             android:fragment="com.blaster.settings.Miscellaneous"
             android:icon="@drawable/ic_settings_miscellaneous"
-	    />
+	    /> -->
 
 </PreferenceScreen>
